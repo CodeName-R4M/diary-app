@@ -9,6 +9,10 @@ import sys
 import os
 from pathlib import Path
 
+# IMPORTANT: Fix for Prisma 403 Forbidden error on PythonAnywhere
+# This bypasses checksum verification which is blocked by PythonAnywhere's firewall
+os.environ['PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING'] = '1'
+
 # Add your project directory to the sys.path
 # IMPORTANT: Update this path to match your PythonAnywhere directory
 project_home = '/home/YOUR_USERNAME/diary-app/backend'
