@@ -20,7 +20,7 @@ app = Flask(__name__)
 # CORS configuration
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:5173", "http://localhost:3000", "*"],
+        "origins": ["http://localhost:5173", "http://localhost:3000", "*","https://diary-app-mu-azure.vercel.app/"],
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"]
     }
