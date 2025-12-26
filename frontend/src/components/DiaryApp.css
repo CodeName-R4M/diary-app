@@ -1,0 +1,134 @@
+.diary-app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.diary-header {
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border-bottom: 4px solid #654321;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.diary-title {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.user-name {
+  font-size: 1.1rem;
+  color: #f5deb3;
+  font-weight: 600;
+}
+
+.logout-btn {
+  padding: 8px 20px;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid #f5deb3;
+  border-radius: 20px;
+  color: #f5deb3;
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+.diary-main {
+  padding: 40px 20px;
+}
+
+.diary-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.diary-actions {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.new-entry-btn {
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  border: 3px solid #654321;
+  border-radius: 30px;
+  color: #ffd700;
+  font-family: 'Kalam', cursive;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.new-entry-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.loading-entries {
+  text-align: center;
+  padding: 60px 20px;
+  color: #5d4037;
+}
+
+.no-entries {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 20px;
+  border: 3px dashed #d4a574;
+}
+
+.no-entries-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.no-entries-text {
+  font-size: 1.8rem;
+  color: #5d4037;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.no-entries-subtext {
+  font-size: 1.2rem;
+  color: #8d6e63;
+}
+
+.entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+

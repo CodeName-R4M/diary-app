@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Kalam', cursive;
+  background: linear-gradient(135deg, #f5e6d3 0%, #d4a574 100%);
+  min-height: 100vh;
+  color: #3e2723;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5e6d3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8d6e63;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6d4c41;
+}
+

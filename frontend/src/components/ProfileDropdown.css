@@ -1,0 +1,230 @@
+.profile-dropdown-container {
+  position: relative;
+}
+
+.profile-avatar-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar-btn .user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar-btn:hover .user-avatar {
+  transform: scale(1.05);
+}
+
+.dropdown-arrow {
+  color: #ffd700;
+  font-size: 0.8rem;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.profile-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  min-width: 320px;
+  max-width: 400px;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  padding: 24px;
+  text-align: center;
+  color: white;
+}
+
+.profile-large-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ffd700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  margin-bottom: 12px;
+}
+
+.profile-name {
+  font-family: 'Kalam', cursive;
+  font-size: 1.4rem;
+  margin: 8px 0 4px 0;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.profile-email {
+  font-size: 0.9rem;
+  color: #f5deb3;
+  margin: 0;
+  word-break: break-word;
+}
+
+.profile-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ddd, transparent);
+  margin: 0;
+}
+
+.profile-details {
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.profile-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.profile-detail-item:hover {
+  background: #f8f9fa;
+}
+
+.detail-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 0.95rem;
+  color: #333;
+  font-family: 'Kalam', cursive;
+  word-break: break-word;
+}
+
+.detail-id {
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: #666;
+}
+
+.profile-actions {
+  padding: 16px;
+  background: #f8f9fa;
+}
+
+.logout-btn-dropdown {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.logout-btn-dropdown:hover {
+  background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.logout-btn-dropdown:active {
+  transform: translateY(0);
+}
+
+.logout-icon {
+  font-size: 1.2rem;
+}
+
+/* Scrollbar styling for profile details */
+.profile-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.profile-details::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.profile-details::-webkit-scrollbar-thumb {
+  background: #8b4513;
+  border-radius: 10px;
+}
+
+.profile-details::-webkit-scrollbar-thumb:hover {
+  background: #654321;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .profile-dropdown-menu {
+    min-width: 280px;
+    right: -10px;
+  }
+
+  .profile-large-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-name {
+    font-size: 1.2rem;
+  }
+}
+
