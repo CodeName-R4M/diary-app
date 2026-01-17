@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { auth, googleProvider } from './firebase';
-import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import { setAuthToken } from './api';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { setAuthToken, getMe } from './api';
 import Login from './components/Login';
 import DiaryApp from './components/DiaryApp';
 import './App.css';
@@ -11,38 +10,27 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        const token = await currentUser.getIdToken();
+    (async () => {
+      const token = localStorage.getItem('diary_token');
+      if (token) {
         setAuthToken(token);
-      } else {
-        setAuthToken(null);
+        try {
+          const me = await getMe();
+          setUser(me);
+        } catch (e) {
+          setAuthToken(null);
+          localStorage.removeItem('diary_token');
+          setUser(null);
+        }
       }
       setLoading(false);
-    });
-
-    return () => unsubscribe();
+    })();
   }, []);
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const token = await result.user.getIdToken();
-      setAuthToken(token);
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('Failed to login. Please try again.');
-    }
-  };
-
   const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      setAuthToken(null);
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
+    setAuthToken(null);
+    localStorage.removeItem('diary_token');
+    setUser(null);
   };
 
   if (loading) {
@@ -54,14 +42,34 @@ function App() {
     );
   }
 
+  const handleLogin = async (token) => {
+    if (!token) return;
+    try {
+      setAuthToken(token);
+      const me = await getMe();
+      setUser(me);
+    } catch (e) {
+      setAuthToken(null);
+      localStorage.removeItem('diary_token');
+      alert('Authentication failed');
+    }
+  };
+
   return (
-    <div className="app">
-      {!user ? (
-        <Login onGoogleLogin={handleGoogleLogin} />
-      ) : (
-        <DiaryApp user={user} onLogout={handleLogout} />
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            !user ? (
+              <Login onLogin={handleLogin} />
+            ) : (
+              <DiaryApp user={user} onLogout={handleLogout} />
+            )
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

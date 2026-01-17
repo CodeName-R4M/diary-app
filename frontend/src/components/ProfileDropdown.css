@@ -9,8 +9,8 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 25px;
+  padding: 4px 8px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
@@ -19,22 +19,27 @@
 }
 
 .profile-avatar-btn .user-avatar {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 3px solid #ffd700;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-avatar-btn:hover .user-avatar {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
 }
 
 .dropdown-arrow {
-  color: #ffd700;
-  font-size: 0.8rem;
-  margin-right: 8px;
+  color: #a0aec0;
+  font-size: 0.75rem;
+  margin-right: 4px;
   transition: transform 0.3s ease;
 }
 
@@ -44,8 +49,8 @@
   right: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  min-width: 320px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
   max-width: 400px;
   z-index: 1000;
   animation: slideDown 0.3s ease;
@@ -64,45 +69,49 @@
 }
 
 .profile-header {
-  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 24px;
   text-align: center;
   color: white;
 }
 
 .profile-large-avatar {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  border: 4px solid #ffd700;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  margin-bottom: 12px;
+  background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 0 auto 16px;
 }
 
 .profile-name {
-  font-family: 'Kalam', cursive;
-  font-size: 1.4rem;
-  margin: 8px 0 4px 0;
-  color: #ffd700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 6px 0;
+  color: white;
+  font-weight: 700;
 }
 
 .profile-email {
-  font-size: 0.9rem;
-  color: #f5deb3;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
   word-break: break-word;
 }
 
 .profile-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, #ddd, transparent);
+  background: rgba(255, 255, 255, 0.1);
   margin: 0;
 }
 
 .profile-details {
-  padding: 16px;
-  max-height: 400px;
+  padding: 0;
+  max-height: 300px;
   overflow-y: auto;
 }
 
@@ -110,64 +119,72 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
   transition: background 0.2s ease;
 }
 
+.profile-detail-item:last-child {
+  border-bottom: none;
+}
+
 .profile-detail-item:hover {
-  background: #f8f9fa;
+  background: #f8fafc;
 }
 
 .detail-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
   margin-top: 2px;
+  color: #667eea;
 }
 
 .detail-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   flex: 1;
   min-width: 0;
 }
 
 .detail-label {
-  font-size: 0.75rem;
-  color: #666;
-  font-weight: 600;
+  font-size: 0.7rem;
+  color: #a0aec0;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .detail-value {
-  font-size: 0.95rem;
-  color: #333;
-  font-family: 'Kalam', cursive;
+  font-size: 0.9rem;
+  color: #2d3748;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   word-break: break-word;
+  font-weight: 500;
 }
 
 .detail-id {
-  font-size: 0.8rem;
-  font-family: monospace;
-  color: #666;
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  color: #718096;
+  margin-top: 4px;
 }
 
 .profile-actions {
-  padding: 16px;
-  background: #f8f9fa;
+  padding: 12px 16px;
+  background: #f7fafc;
+  border-top: 1px solid #e0e0e0;
 }
 
 .logout-btn-dropdown {
   width: 100%;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
   border: none;
   border-radius: 8px;
   color: white;
-  font-family: 'Kalam', cursive;
-  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -175,13 +192,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.25);
 }
 
 .logout-btn-dropdown:hover {
-  background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+  background: linear-gradient(135deg, #ff5252 0%, #ee5a6f 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.35);
 }
 
 .logout-btn-dropdown:active {
@@ -189,7 +206,7 @@
 }
 
 .logout-icon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 /* Scrollbar styling for profile details */
@@ -198,17 +215,16 @@
 }
 
 .profile-details::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
+  background: transparent;
 }
 
 .profile-details::-webkit-scrollbar-thumb {
-  background: #8b4513;
-  border-radius: 10px;
+  background: #cbd5e0;
+  border-radius: 3px;
 }
 
 .profile-details::-webkit-scrollbar-thumb:hover {
-  background: #654321;
+  background: #a0aec0;
 }
 
 /* Responsive design */
@@ -219,12 +235,13 @@
   }
 
   .profile-large-avatar {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
   }
 
   .profile-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 

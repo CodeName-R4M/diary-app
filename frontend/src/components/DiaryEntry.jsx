@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { deleteDiaryEntry } from '../api';
+import { deleteDiaryEntry, getImageUrl } from '../api';
 import './DiaryEntry.css';
 
 function DiaryEntry({ entry, onDeleted }) {
@@ -58,7 +58,7 @@ function DiaryEntry({ entry, onDeleted }) {
       {entry.imageUrl && (
         <div className="entry-image">
           <img 
-            src={`${API_URL}${entry.imageUrl}`} 
+            src={`${API_URL}${getImageUrl(entry.imageUrl)}`} 
             alt="Diary entry" 
           />
         </div>

@@ -1,15 +1,7 @@
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
+node_modules
+# Keep environment variables out of version control
 .env
-uploads/
-firebase-credentials.json
-*.db
-.DS_Store
 
+/generated/prisma
+
+/generated/prisma

@@ -35,7 +35,6 @@ $frontendFiles = @(
     "frontend\vite.config.js",
     "frontend\src\main.jsx",
     "frontend\src\App.jsx",
-    "frontend\src\firebase.js",
     "frontend\src\api.js",
     "frontend\src\components\Login.jsx",
     "frontend\src\components\DiaryApp.jsx",
@@ -80,12 +79,6 @@ if (Test-Path "backend\.env") {
     Write-Host "  [OK] backend\.env exists" -ForegroundColor Green
 } else {
     Write-Host "  [TODO] backend\.env - Copy from .env.example and configure" -ForegroundColor Magenta
-}
-
-if (Test-Path "backend\firebase-credentials.json") {
-    Write-Host "  [OK] backend\firebase-credentials.json exists" -ForegroundColor Green
-} else {
-    Write-Host "  [TODO] backend\firebase-credentials.json - Download from Firebase Console" -ForegroundColor Magenta
 }
 
 if (Test-Path "frontend\.env") {

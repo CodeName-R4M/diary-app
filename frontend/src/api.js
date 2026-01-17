@@ -15,6 +15,22 @@ export const setAuthToken = (token) => {
   }
 };
 
+// Auth API
+export const register = async ({ email, password, displayName }) => {
+  const response = await api.post('/api/auth/register', { email, password, displayName });
+  return response.data;
+};
+
+export const login = async ({ email, password }) => {
+  const response = await api.post('/api/auth/login', { email, password });
+  return response.data;
+};
+
+export const getMe = async () => {
+  const response = await api.get('/api/auth/me');
+  return response.data;
+};
+
 // Diary API calls
 export const createDiaryEntry = async (formData) => {
   const response = await api.post('/api/diary/entries', formData, {
@@ -38,6 +54,15 @@ export const getDiaryEntry = async (id) => {
 export const deleteDiaryEntry = async (id) => {
   const response = await api.delete(`/api/diary/entries/${id}`);
   return response.data;
+};
+
+export const getImageUrl = (imageUrl) => {
+  if (!imageUrl) return null;
+  // Convert /uploads/filename to /api/uploads/filename for secure endpoint
+  if (imageUrl.startsWith('/uploads/')) {
+    return imageUrl.replace('/uploads/', '/api/uploads/');
+  }
+  return imageUrl;
 };
 
 export default api;

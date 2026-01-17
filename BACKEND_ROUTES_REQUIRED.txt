@@ -1,0 +1,207 @@
+BACKEND API ROUTES REQUIRED
+============================
+
+BASE URL: http://localhost:8000
+
+
+AUTHENTICATION ENDPOINTS
+========================
+
+1. POST /api/auth/register
+   Description: Register a new user
+   Request Body:
+   {
+     "email": "user@example.com",        (string, required)
+     "password": "password123",          (string, required)
+     "displayName": "John Doe"           (string, required)
+   }
+   Response:
+   {
+     "token": "jwt_token_here",          (string, JWT token)
+     "user": {
+       "id": "user_id",
+       "email": "user@example.com",
+       "displayName": "John Doe"
+     }
+   }
+   Status: 201 Created or 400 Bad Request
+
+
+2. POST /api/auth/login
+   Description: Authenticate user and get JWT token
+   Request Body:
+   {
+     "email": "user@example.com",        (string, required)
+     "password": "password123"           (string, required)
+   }
+   Response:
+   {
+     "token": "jwt_token_here",          (string, JWT token)
+     "user": {
+       "id": "user_id",
+       "email": "user@example.com",
+       "displayName": "John Doe"
+     }
+   }
+   Status: 200 OK or 401 Unauthorized
+
+
+3. GET /api/auth/me
+   Description: Get current authenticated user info
+   Headers:
+   {
+     "Authorization": "Bearer jwt_token_here"  (required)
+   }
+   Response:
+   {
+     "id": "user_id",
+     "email": "user@example.com",
+     "displayName": "John Doe"
+   }
+   Status: 200 OK or 401 Unauthorized
+
+
+DIARY ENTRY ENDPOINTS
+=====================
+
+4. POST /api/diary/entries
+   Description: Create a new diary entry with optional image upload
+   Headers:
+   {
+     "Authorization": "Bearer jwt_token_here",  (required)
+     "Content-Type": "multipart/form-data"     (required for images)
+   }
+   Request Body (multipart/form-data):
+   {
+     "title": "Entry Title",             (string, required)
+     "content": "Entry content text",    (string, required)
+     "image": <file>                     (file, optional - image file)
+   }
+   Response:
+   {
+     "id": "entry_id",
+     "title": "Entry Title",
+     "content": "Entry content text",
+     "imageUrl": "/uploads/filename.jpg", (string, only if image uploaded)
+     "createdAt": "2025-01-15T10:30:00Z",
+     "updatedAt": "2025-01-15T10:30:00Z"
+   }
+   Status: 201 Created or 400 Bad Request
+
+
+5. GET /api/diary/entries
+   Description: Get all diary entries for current user
+   Headers:
+   {
+     "Authorization": "Bearer jwt_token_here"  (required)
+   }
+   Response:
+   [
+     {
+       "id": "entry_id_1",
+       "title": "Entry Title",
+       "content": "Entry content...",
+       "imageUrl": "/uploads/filename.jpg",
+       "createdAt": "2025-01-15T10:30:00Z",
+       "updatedAt": "2025-01-15T10:30:00Z"
+     },
+     {
+       "id": "entry_id_2",
+       "title": "Another Entry",
+       "content": "More content...",
+       "imageUrl": null,
+       "createdAt": "2025-01-14T15:45:00Z",
+       "updatedAt": "2025-01-14T15:45:00Z"
+     }
+   ]
+   Status: 200 OK or 401 Unauthorized
+
+
+6. GET /api/diary/entries/{id}
+   Description: Get a specific diary entry by ID
+   Headers:
+   {
+     "Authorization": "Bearer jwt_token_here"  (required)
+   }
+   URL Parameters:
+   {
+     "id": "entry_id"  (string, required)
+   }
+   Response:
+   {
+     "id": "entry_id",
+     "title": "Entry Title",
+     "content": "Entry content text",
+     "imageUrl": "/uploads/filename.jpg",
+     "createdAt": "2025-01-15T10:30:00Z",
+     "updatedAt": "2025-01-15T10:30:00Z"
+   }
+   Status: 200 OK or 404 Not Found
+
+
+7. DELETE /api/diary/entries/{id}
+   Description: Delete a specific diary entry
+   Headers:
+   {
+     "Authorization": "Bearer jwt_token_here"  (required)
+   }
+   URL Parameters:
+   {
+     "id": "entry_id"  (string, required)
+   }
+   Response:
+   {
+     "message": "Entry deleted successfully"
+   }
+   Status: 200 OK or 404 Not Found
+
+
+IMAGE/UPLOAD ENDPOINTS
+======================
+
+8. GET /api/uploads/{filename}
+   Description: Retrieve uploaded images (secure endpoint)
+   Headers:
+   {
+     "Authorization": "Bearer jwt_token_here"  (optional but recommended)
+   }
+   URL Parameters:
+   {
+     "filename": "filename.jpg"  (string, required)
+   }
+   Response: Image file (binary data)
+   Status: 200 OK or 404 Not Found
+
+
+IMPLEMENTATION REQUIREMENTS
+============================
+
+Authentication:
+- Use JWT tokens (Bearer token in Authorization header)
+- Validate token on protected endpoints
+- Ensure user can only access their own data
+
+File Upload:
+- Handle multipart/form-data for image uploads
+- Store images in /uploads directory
+- Return imageUrl in response for diary entries
+- Validate file types (jpg, jpeg, png, gif)
+- Limit file size (recommend 5MB max)
+
+Data Validation:
+- Email must be valid format
+- Password minimum 6 characters
+- Title and content required
+- Remove unnecessary/unsafe data before responding
+
+Error Handling:
+- Return appropriate HTTP status codes
+- Include error messages in response body
+- Handle duplicate email in registration
+- Handle invalid credentials in login
+
+Database/Storage:
+- Store users with hashed passwords
+- Store diary entries with user association
+- Track createdAt and updatedAt timestamps
+- Store image references/paths
