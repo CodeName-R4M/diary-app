@@ -1,0 +1,15 @@
+{
+  "name": "diary-app",
+  "version": "1.0.0",
+  "description": "Diary application",
+  "main": "backend/server.js",
+  "private": true,
+  "scripts": {
+    "install-backend": "cd backend && npm install",
+    "start": "cd backend && node server.js"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
