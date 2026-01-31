@@ -69,7 +69,7 @@ function DiaryEntry({ entry, onDeleted }) {
     }
   };
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const API_URL = "https://diary-back.vercel.app";
   // Optional: log API_URL once for context
   useEffect(() => {
     console.log("[DiaryEntry] Using API_URL:", API_URL);
