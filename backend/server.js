@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
+
 import multer from 'multer';
 import { registerUser } from "./modules/register.js";
 import { loginUser } from "./modules/login.js";
@@ -15,8 +15,6 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 const app = express();
 const port = process.env.PORT || 8000;
-
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -150,4 +148,5 @@ app.delete('/api/diary/entries/:id', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on http://127.0.0.1:${port}`);
+
 });
