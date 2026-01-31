@@ -5,6 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://diary-app-mu-azure.verc
 const api = axios.create({
   baseURL: API_URL,
 });
+console.log("🚀 Frontend is calling backend at:", API_URL);
 
 // Add auth token to requests
 export const setAuthToken = (token) => {
