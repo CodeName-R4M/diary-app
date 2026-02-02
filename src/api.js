@@ -53,6 +53,11 @@ export const deleteDiaryEntry = async (id) => {
   return response.data;
 };
 
+export const updateDiaryEntry = async (id, formData) => {
+  const response = await api.put(`/api/diary/entries/${id}`, formData);
+  return response.data;
+};
+
 export const getImageUrl = (imageUrl) => {
   if (!imageUrl) return null;
   // Convert /uploads/filename to /api/uploads/filename for secure endpoint

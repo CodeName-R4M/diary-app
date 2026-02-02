@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { deleteDiaryEntry } from '../api';  // Removed unused getImageUrl
+import EditEntryForm from './EditEntryForm';
 import './DiaryEntry.css';
 
 function DiaryEntry({ entry, onDeleted }) {
   const [deleting, setDeleting] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   // Log when component mounts + what data it received
   useEffect(() => {
@@ -81,14 +83,24 @@ function DiaryEntry({ entry, onDeleted }) {
         <div className="entry-date">
           📅 {formatDate(entry.createdAt)}
         </div>
-        <button
-          onClick={handleDelete}
-          disabled={deleting}
-          className="delete-btn"
-          title="Delete entry"
-        >
-          {deleting ? '⏳ Deleting...' : '🗑️'}
-        </button>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button
+            onClick={() => setShowEdit(true)}
+            className="edit-btn"
+            title="Edit entry"
+          >
+            ✏️
+          </button>
+
+          <button
+            onClick={handleDelete}
+            disabled={deleting}
+            className="delete-btn"
+            title="Delete entry"
+          >
+            {deleting ? '⏳ Deleting...' : '🗑️'}
+          </button>
+        </div>
       </div>
 
       {entry.title && (
@@ -125,6 +137,20 @@ function DiaryEntry({ entry, onDeleted }) {
           Last updated: {formatDate(entry.updatedAt)}
         </span>
       </div>
+
+      {showEdit && (
+        <EditEntryForm
+          entry={entry}
+          onClose={() => setShowEdit(false)}
+          onEntryUpdated={() => {
+            setShowEdit(false);
+            onDeleted();
+          }}
+          onDeleted={() => {
+            onDeleted();
+          }}
+        />
+      )}
     </div>
   );
 }
